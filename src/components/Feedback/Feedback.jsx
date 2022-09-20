@@ -1,26 +1,40 @@
 import React from "react";
+import Buttons from "./Buttons";
 
 class Feedback extends React.Component {
   state = {
     good: 0,
-    neutral: 2,
-    bad: 5
+    neutral: 0,
+    bad: 0
   };
 
-  handleIncrement = () => {};
+  goodValue = () => {
+    this.setState( prevState => ({
+        good: prevState.good + 1,
+        }));
+  };
+
+  neutralValue = () => {
+    this.setState( prevState => ({
+        neutral: prevState.neutral + 1,
+        }));
+  };
+
+  badValue = () => {
+    this.setState( prevState => ({
+        bad: prevState.bad + 1,
+        }));
+  };
 
   render() {
   return (
     <div>
       <h2>Please leave feedback</h2>
-      <div>
-        <button type="button" onClick={this.handleIncrement}>
-          good</button>
-          <button type="button" onClick={this.handleIncrement}>
-          neutral</button>
-          <button type="button" onClick={this.handleIncrement}>
-          bad</button>
-      </div>
+      <Buttons 
+      onGoodValue={this.goodValue} 
+      onNeutralValue={this.neutralValue} 
+      onBadValue={this.badValue}
+      />
       <div>
         <h2>Statistics</h2>
         <p>Good: {this.state.good}</p>
